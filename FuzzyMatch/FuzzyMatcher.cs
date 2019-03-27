@@ -49,7 +49,7 @@ namespace FuzzyMatch
         [SuppressMessage("ReSharper", "ForCanBeConvertedToForeach")]
         public List<FuzzyMatchResult> FuzzyMatch(string pattern, bool formatString = false, bool includeOriginalStringInResult = true)
         {
-            var matches = new List<FuzzyMatchResult>(SearchStrings.Count);
+            var matches = new List<FuzzyMatchResult>();
 
             for (var i = 0; i < SearchStrings.Count; i++)
             {

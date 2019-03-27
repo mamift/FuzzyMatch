@@ -27,37 +27,48 @@ namespace FuzzyMatch.Tests
         }
 
         [Test]
-        public void BenchmarkTest()
+        public void LinqBenchmarkTest()
         {
             var linqResults = new float[10];
-            var instanceResult = new float[10];
+            var words = TestUtilities.DictionaryWords;
 
             for (int i = 0; i < 10; i++)
             {
                 var stopWatch1 = new Stopwatch();
                 stopWatch1.Start();
-            
-                var linqWay = TestUtilities.DictionaryWords.Select(w => FuzzyMatcher.FuzzyMatch(w, "corvus", true))
+
+                var linqWay = words.Select(w => FuzzyMatcher.FuzzyMatch(w, "corvus", true))
                                            .Where(r => r.DidMatch).ToList();
 
                 stopWatch1.Stop();
-                Debug.WriteLine($"Time: {stopWatch1.ElapsedMilliseconds}");
+                Debug.WriteLine($"Time for iteration {i+1}: {stopWatch1.ElapsedMilliseconds}");
 
                 linqResults[i] = stopWatch1.ElapsedMilliseconds;
             }
+
+            var linqAverage = linqResults.Average();
+        }
+
+        [Test]
+        public void InstanceBenchmarkTest()
+        {
+            var instanceResult = new float[10];
+            var words = TestUtilities.DictionaryWords;
 
             for (int i = 0; i < 10; i++)
             {
                 var stopWatch2 = new Stopwatch();
                 stopWatch2.Start();
             
-                var instance = new FuzzyMatcher(TestUtilities.DictionaryWords);
+                var instance = new FuzzyMatcher(words);
                 var results = instance.FuzzyMatch("corvus", true);
 
                 stopWatch2.Stop();
-                Debug.WriteLine($"Time: {stopWatch2.ElapsedMilliseconds}");
+                Debug.WriteLine($"Time for iteration {i+1}: {stopWatch2.ElapsedMilliseconds}");
                 instanceResult[i] = stopWatch2.ElapsedMilliseconds;
             }
+
+            var instancesAverage = instanceResult.Average();
         }
     }
 }
