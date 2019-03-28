@@ -7,6 +7,11 @@ namespace FuzzyMatch.Tests
     public static class TestUtilities
     {
         /// <summary>
+        /// Returns a new instance of <see cref="FuzzyMatcher"/>.
+        /// </summary>
+        public static FuzzyMatcher NewFuzzyMatcherInstance => new FuzzyMatcher(DictionaryWords);
+
+        /// <summary>
         /// Stores a static reference to all the words in the words.txt file.
         /// </summary>
         public static List<string> DictionaryWords = DeserialiseDictionaryWords();

@@ -79,5 +79,22 @@ namespace FuzzyMatch
 
             return matches;
         }
+
+        /// <summary>
+        /// Returns an array of best matches, whereby a best match is determined by a successful match and that the score
+        /// assigned is the highest out of the initial result set.
+        /// </summary>
+        /// <param name="pattern"></param>
+        /// <param name="formatString"></param>
+        /// <param name="includeOriginalStringInResult"></param>
+        /// <param name="includeNonMatching"></param>
+        /// <returns></returns>
+        public FuzzyMatchResult[] BestFuzzyMatches(string pattern, bool formatString = false, bool includeOriginalStringInResult = true,
+            bool includeNonMatching = false)
+        {
+            var results = FuzzyMatch(pattern, formatString, includeOriginalStringInResult, includeNonMatching);
+
+            return results.GetBestMatches();
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace FuzzyMatch
 
         /// <summary>
         /// Does a simple fuzzy search for a <paramref name="pattern"/> within a string.
-        /// <para>This is a very simple form of fuzzy-matching and does not anything beyond a boolean indicating the matching succeeded or failed.</para>
+        /// <para>This is a very simple form of fuzzy-matching and does not provide anything beyond a boolean indicating the matching succeeded or failed.</para>
         /// </summary>
         /// <param name="stringToSearch">The string to search for the pattern in.</param>
         /// <param name="pattern">The pattern to search for in the string.</param>
@@ -45,7 +45,7 @@ namespace FuzzyMatch
         /// </summary>
         /// <param name="stringToSearch">The string to search for the pattern in.</param>
         /// <param name="pattern">The pattern to search for in the string.</param>
-        /// <param name="formatString">Set to <c>true</c> to format the string returned in the <see cref="FuzzyMatchResult"/> return value by enclosing it in braces.
+        /// <param name="formatString">Set to <c>true</c> to format the string returned in the <see cref="FuzzyMatchResult"/> return value by enclosing it in braces '{}'.
         /// <para>Skipping formatting saves CPU cycles, especially when using this method on a large list of strings.</para></param>
         /// <param name="includeOriginalStringInResult">When <c>true</c>, this will include the <paramref name="stringToSearch"/> in the returned result.
         /// Is useful when multiple strings are searched for the same pattern and you wish to build a sequence of <see cref="FuzzyMatchResult"/> objects.</param>
@@ -210,7 +210,7 @@ namespace FuzzyMatch
         /// <param name="opener">Specify a custom opening character to enclose matching characters found in the search. Default is '{'</param>
         /// <param name="closer">Specify a custom closing character to enclose matching characters found in the search. Default is '}'</param>
         /// <returns></returns>
-        public static string FormatStringToEncloseMatches(string searchedString, IEnumerable<int> matchedIndices,
+        private static string FormatStringToEncloseMatches(string searchedString, IEnumerable<int> matchedIndices,
             string opener = "{", string closer = "}")
         {
             var insertedCount = -1; /* counts the number of times an extra char was inserted, so that subsequent insertions 

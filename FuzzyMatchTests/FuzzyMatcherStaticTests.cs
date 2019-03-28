@@ -114,5 +114,35 @@ namespace FuzzyMatch.Tests
             Assert.IsTrue(test.Score > 0);
             Assert.IsTrue(test.Score == 17);
         }
+
+        [Test]
+        public void FuzzyMatchUsingLinqTest1()
+        {
+            var results = TestUtilities.DictionaryWords
+                .Select(w => FuzzyMatcher.FuzzyMatch(w, "fal"))
+                .Where(r => r.DidMatch)
+                .ToList();
+
+            Assert.IsNotEmpty(results);
+            Assert.IsTrue(results.Count == 4956);
+        }
+        
+        [Test]
+        public void FuzzyMatcherUsingLinqTest2()
+        {
+            var results = TestUtilities
+                          .DictionaryWords
+                          .Select(w => FuzzyMatcher.FuzzyMatch(w, "involute", true))
+                          .Where(r => r.DidMatch || r.Score > 0)
+                          .ToList();
+
+            Assert.IsNotEmpty(results);
+            Assert.IsTrue(results.Count == 13839);
+
+            var didMatch = results.Where(r => r.DidMatch).ToList();
+
+            Assert.IsNotEmpty(didMatch);
+            Assert.IsTrue(didMatch.Count == 16);
+        }
     }
 }

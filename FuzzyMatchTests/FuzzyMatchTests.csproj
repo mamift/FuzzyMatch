@@ -55,6 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DictionaryWordsTest.cs" />
+    <Compile Include="Extensions\EnumerableExtensionMethodsTests.cs" />
     <Compile Include="FuzzyMatcherStaticTests.cs" />
     <Compile Include="FuzzyMatcherTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

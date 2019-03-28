@@ -10,7 +10,7 @@ namespace FuzzyMatch.Tests
         [Test]
         public void FuzzyMatcherInstanceTest()
         {
-            FuzzyMatcher instance = new FuzzyMatcher(TestUtilities.DictionaryWords);
+            var instance = TestUtilities.NewFuzzyMatcherInstance;
             
             var results = instance.FuzzyMatch("corvus", true);
 
@@ -22,7 +22,7 @@ namespace FuzzyMatch.Tests
         [Test]
         public void FuzzyMatcherIncludeNonMatchingResultsTest()
         {
-            var instance = new FuzzyMatcher(TestUtilities.DictionaryWords);
+            var instance = TestUtilities.NewFuzzyMatcherInstance;
 
             var results = instance.FuzzyMatch("ascendi", includeNonMatching: true);
 
@@ -33,21 +33,14 @@ namespace FuzzyMatch.Tests
         }
 
         [Test]
-        public void FuzzyMatcherLinqTest()
+        public static void FuzzyMatcherGetBestFuzzyMatchesTest()
         {
-            var results = TestUtilities
-                .DictionaryWords
-                .Select(w => FuzzyMatcher.FuzzyMatch(w, "involute", true))
-                .Where(r => r.DidMatch || r.Score > 0)
-                .ToList();
+            var instance = TestUtilities.NewFuzzyMatcherInstance;
 
-            Assert.IsNotEmpty(results);
-            Assert.IsTrue(results.Count == 13839);
+            var bestMatches = instance.BestFuzzyMatches("imperium");
 
-            var didMatch = results.Where(r => r.DidMatch).ToList();
-
-            Assert.IsNotEmpty(didMatch);
-            Assert.IsTrue(didMatch.Count == 16);
+            Assert.IsNotEmpty(bestMatches);
+            Assert.IsTrue(bestMatches.Length == 2);
         }
 
         [Test]
