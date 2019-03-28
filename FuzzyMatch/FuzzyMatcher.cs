@@ -11,6 +11,19 @@ namespace FuzzyMatch
     /// <remarks>
     /// The fuzzy-matching algorithm is adapted from https://medium.com/forrest-the-woods/reverse-engineering-sublime-text-s-fuzzy-match-4cffeed33fdb
     /// </remarks>
+    /// <example>
+    /// <para>You can use the object (instantiate an instance of <see cref="FuzzyMatcher"/>, or use static methods).</para>
+    /// <para>To use the instance class:
+    /// <c>
+    /// var words = new []{ "abaisance", "abaised", "abaiser", "abaisse", "abaissed", "abaka" };
+    /// FuzzyMatcher instance = new FuzzyMatcher(words);
+    /// var matchResults = instance.FuzzyMatch("aba"); // should produce a list of <see cref="FuzzyMatchResult"/>s
+    /// </c>
+    /// </para>
+    /// <para>With the static methods, you can use LINQ:
+    /// <c>var results = words.Select(word => FuzzyMatcher.FuzzyMatch(word, "aba")) .Where(results => results.DidMatch || results.Score > 0) .ToList();</c>
+    /// </para> 
+    /// </example>
     public partial class FuzzyMatcher
     {
         /// <summary>
@@ -44,17 +57,24 @@ namespace FuzzyMatch
         /// <para><c>true</c> will slow down the search on a large count of <see cref="SearchStrings"/>.</para>
         /// </param>
         /// <param name="includeOriginalStringInResult">When <c>false</c>, omits the original string in the <see cref="FuzzyMatchResult"/>.</param>
+        /// <param name="includeNonMatching">Set to <c>true</c> to include results that did not match (<see cref="FuzzyMatchResult.DidMatch"/>), but
+        /// whose score is greater than 0.</param>
         /// <returns></returns>
         [SuppressMessage("ReSharper", "LoopCanBeConvertedToQuery")]
         [SuppressMessage("ReSharper", "ForCanBeConvertedToForeach")]
-        public List<FuzzyMatchResult> FuzzyMatch(string pattern, bool formatString = false, bool includeOriginalStringInResult = true)
+        public List<FuzzyMatchResult> FuzzyMatch(string pattern, bool formatString = false, bool includeOriginalStringInResult = true,
+            bool includeNonMatching = false)
         {
             var matches = new List<FuzzyMatchResult>();
 
             for (var i = 0; i < SearchStrings.Count; i++)
             {
                 var result = FuzzyMatch(SearchStrings[i], pattern, formatString, includeOriginalStringInResult);
-                if (result.DidMatch) matches.Add(result);
+                if (includeNonMatching)
+                {
+                    if (result.Score > 0) matches.Add(result);
+                }
+                else if (result.DidMatch) matches.Add(result);
             }
 
             return matches;
