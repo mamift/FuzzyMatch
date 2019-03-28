@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("FuzzyMatchTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Queensland Government")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("FuzzyMatchTests")]
-[assembly: AssemblyCopyright("Copyright © Queensland Government 2019")]
+[assembly: AssemblyCopyright("Copyright © mamift 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

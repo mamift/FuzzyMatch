@@ -20,7 +20,7 @@ namespace FuzzyMatch
 
         /// <summary>
         /// If the option was specified, then the string will be formatted indicating which characters where matched.
-        /// <para><seealso cref="FuzzyMatcher.FuzzyMatch(string,string,bool)"/>.</para>
+        /// <para><seealso cref="FuzzyMatcher.FuzzyMatch(string,string,bool,bool)"/>.</para>
         /// </summary>
         public string FormattedString { get; set; }
 

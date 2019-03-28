@@ -57,8 +57,7 @@ namespace FuzzyMatch.Tests
 
             var test = FuzzyMatcher.FuzzyMatch(stringToSearch: nescience,
                                                pattern: "nes",
-                                               formatString: true,
-                                               includeOriginalStringInResult: true);
+                                               formatString: true);
 
             Assert.IsTrue(test.DidMatch);
             Assert.IsTrue(test.Score == 15);
