@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace FuzzyMatch.Tests
@@ -17,7 +18,11 @@ namespace FuzzyMatch.Tests
         public static List<string> DeserialiseDictionaryWords()
         {
             var words = new List<string>(466548);
-            var wordFile = new StreamReader(File.OpenRead("words.txt"));
+            var wordsTxtFile = Path.Combine(Environment.CurrentDirectory, "words.txt");
+            var fileStream = File.OpenRead(wordsTxtFile);
+            var wordFile = new StreamReader(fileStream);
+
+            using (fileStream)
             using (wordFile)
             {
                 string aWord = wordFile.ReadLine();

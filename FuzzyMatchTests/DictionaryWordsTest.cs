@@ -17,10 +17,8 @@ namespace FuzzyMatch.Tests
         [Test]
         public void DictionaryWordsAreCorrectCountTest()
         {
-            var words = TestUtilities.DictionaryWords;
-            
-            Assert.IsNotEmpty(words);
-            Assert.IsTrue(words.Count == 466547);
+            Assert.IsNotEmpty(TestUtilities.DictionaryWords);
+            Assert.IsTrue(TestUtilities.DictionaryWords.Count == 466547);
         }
     }
 }

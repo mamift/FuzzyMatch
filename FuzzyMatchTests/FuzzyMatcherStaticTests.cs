@@ -96,6 +96,8 @@ namespace FuzzyMatch.Tests
                                                formatterFunc: formatterFunc);
 
             Assert.IsTrue(test.DidMatch);
+            Assert.IsTrue(test.Score == 25);
+            Assert.IsTrue(test.MatchedIndices.Length == 6);
             var parenthesesCount = test.FormattedString.Count(c => c == '(' || c == ')');
             Assert.IsTrue(parenthesesCount == 12);
         }
@@ -108,6 +110,7 @@ namespace FuzzyMatch.Tests
             var test = FuzzyMatcher.FuzzyMatch(plantaginaceae, "planet", true);
 
             Assert.IsFalse(test.DidMatch);
+            Assert.IsTrue(test.MatchedIndices.Length == 5);
             Assert.IsTrue(test.Score > 0);
             Assert.IsTrue(test.Score == 17);
         }
