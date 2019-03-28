@@ -58,6 +58,7 @@
     <Compile Include="Extensions\EnumerableExtensionMethodsTests.cs" />
     <Compile Include="FuzzyMatcherStaticTests.cs" />
     <Compile Include="FuzzyMatcherTests.cs" />
+    <Compile Include="ReflectionAnalysis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestUtilities.cs" />
   </ItemGroup>
