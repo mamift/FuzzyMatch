@@ -13,7 +13,10 @@ namespace FuzzyMatch
         /// <returns></returns>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="results"/> is <see langword="null"/></exception>
         public static FuzzyMatchResult GetBestMatch(this IEnumerable<FuzzyMatchResult> results) =>
-            results.GetBestMatches().FirstOrDefault();
+            results.GetBestMatches()
+                .OrderByDescending(bm => bm.Score)
+                .ThenByDescending(obm => obm.MatchedIndices.Length)
+                .FirstOrDefault();
 
         /// <summary>
         /// Returns an array of best matches from the current <paramref name="results"/>; where possible
