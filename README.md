@@ -22,6 +22,33 @@ var matchResults = instance.FuzzyMatch("aba");
 var results = words.Select(word => FuzzyMatcher.FuzzyMatch(word, "aba", true)).Where(results => results.DidMatch || results.Score > 0).ToList();
 ```
 
+### Additional features
+This library also includes additional APIs for formatting the string to indicate which part of the string was matched.
+```C#
+// formats a string by enclosing matched characters inside parentheses
+Func<string, IEnumerable<int>, string> formatterFunc = (str, indices) =>
+{
+    var insertedCount = 0;
+    return indices.Aggregate(str, (theStr, theIndex) => 
+                theStr.Insert(theIndex + (insertedCount++), "(")
+                      .Insert(theIndex + (insertedCount++) + 1, ")"));
+};
+
+var test = FuzzyMatcher.FuzzyMatch(stringToSearch: "plantagenet",
+                                   pattern: "planet",
+                                   formatterFunc: formatterFunc);
+```
+The ```test``` variable results in:
+```JSON
+{
+    "DidMatch": true,
+    "FormattedString": "(P)(l)(a)(n)tagen(e)(t)",
+    "MatchedIndices": [0, 1, 2, 3, 9, 10],
+    "OriginalString": "",
+    "Score": 25
+}
+```
+
 ### Additional APIs over existing code
 
 ### Development

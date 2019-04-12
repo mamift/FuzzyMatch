@@ -48,7 +48,7 @@ namespace FuzzyMatch
         }
 
         /// <summary>
-        /// Fuzzy match against all the loaded <see cref="SearchStrings"/> with a given <see cref="pattern"/>.
+        /// Fuzzy match against all the loaded <see cref="SearchStrings"/> with a given <paramref cref="pattern"/>.
         /// <para>Results in the list are not sorted.</para>
         /// </summary>
         /// <param name="pattern"></param>

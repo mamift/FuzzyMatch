@@ -4,14 +4,19 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <Authors>mamift (with thanks to Forrest Smith)</Authors>
     <Company>mamift (with thanks to Forrest Smith)</Company>
-    <Description>A C# implementation of Sublime Text's fuzzy matching algorithm, originally described here: https://medium.com/forrest-the-woods/reverse-engineering-sublime-text-s-fuzzy-match-4cffeed33fdb</Description>
+    <Description>A C# implementation of Sublime Text's fuzzy matching algorithm. Include an additional API for formatting parts of the string that has matched chars. Implements the algorithm originally detailed here: https://medium.com/forrest-the-woods/reverse-engineering-sublime-text-s-fuzzy-match-4cffeed33fdb</Description>
     <Copyright>Copyright (C) 2019 mamift</Copyright>
     <PackageProjectUrl>https://github.com/mamift/FuzzyMatch</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/mamift/FuzzyMatch</RepositoryUrl>
+    <PackageTags />
+    <PackageId>FuzzyMatch</PackageId>
+    <PackageIconUrl></PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Users\mamif0\Projects\FuzzyMatch\FuzzyMatch\FuzzyMatch.xml</DocumentationFile>
+    <DocumentationFile>.\FuzzyMatch.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
